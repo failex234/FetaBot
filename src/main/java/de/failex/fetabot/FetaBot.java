@@ -1,9 +1,14 @@
 package de.failex.fetabot;
 
 import com.google.gson.Gson;
+import de.failex.fetabot.listener.ChatListener;
+import org.pircbotx.Configuration;
+import org.pircbotx.PircBotX;
+import org.pircbotx.exception.IrcException;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -113,8 +118,29 @@ public class FetaBot {
             }
         }
 
-        log (PRGNAME + " Version " + VERSION + " by " + AUTHOR + " starting up...");
-        //TODO
+        log(PRGNAME + " Version " + VERSION + " by " + AUTHOR + " starting up...");
+
+        Configuration configuration = new Configuration.Builder()
+                .setName(cfg.getUser())
+                .setServerPassword(cfg.getOauth())
+                .addServer("irc.twitch.tv")
+                .addAutoJoinChannel("#" + cfg.getChannel())
+                .addListener(new ChatListener())
+                .buildConfiguration();
+
+        PircBotX bot = new PircBotX(configuration);
+
+        log("Connecting to Twitch as " + cfg.getUser() + " to Channel " + cfg.getChannel() + " and " + cfg.getOwner() + " as the owner");
+
+        try {
+            bot.startBot();
+        } catch (IOException e) {
+            e.printStackTrace();
+            log("Something went wrong! Unable to continue, exiting now...");
+        } catch (IrcException e) {
+            e.printStackTrace();
+            log("Something went wrong! Unable to continue, exiting now...");
+        }
     }
 
     public static void log(String msg) {
