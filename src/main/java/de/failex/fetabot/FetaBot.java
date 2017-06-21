@@ -10,13 +10,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FetaBot {
 
     static File config = new File("config.json");
     static Gson gson = new Gson();
-    static ConfigManager cfg;
+    public static ConfigManager cfg;
+
+    public static PircBotX bot;
 
     static final String PRGNAME = "FeTaBot";
     static final String VERSION = "1.0-SNAPSHOT";
@@ -128,7 +131,7 @@ public class FetaBot {
                 .addListener(new ChatListener())
                 .buildConfiguration();
 
-        PircBotX bot = new PircBotX(configuration);
+        bot = new PircBotX(configuration);
 
         log("Connecting to Twitch as " + cfg.getUser() + " to Channel " + cfg.getChannel() + " and " + cfg.getOwner() + " as the owner");
 
@@ -141,6 +144,27 @@ public class FetaBot {
             e.printStackTrace();
             log("Something went wrong! Unable to continue, exiting now...");
         }
+    }
+
+    public static void setupCommands() {
+        HashMap<String, Command> cmds = cfg.getCommands();
+        cmds.put("!greet", new Command() {
+            public void run(String user, String group) {
+                FetaBot.sendMessage("Hello, " + user + "!");
+            }
+        });
+    }
+
+    public static void sendMessage(String msg) {
+        //TODO
+    }
+
+    public static String getGroup(String user) {
+        if (user.equals(cfg.getUser())) return "owner";
+        for (String mods : cfg.getMods()) {
+            if (user.equals(mods)) return "mod";
+        }
+        return "user";
     }
 
     public static void log(String msg) {
