@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="tab3pane" prefHeight="349.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.failex.fetabot.Controller">
+   <children>
+      <ListView fx:id="lv_cmds" layoutX="33.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="lbl_title_cmds" layoutX="92.0" layoutY="23.0" text="Command Editor" />
+      <Button fx:id="btn_edit_cmds" layoutX="253.0" layoutY="56.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="100.0" text="Edit" />
+      <Button fx:id="btn_del_cmds" layoutX="253.0" layoutY="175.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="100.0" text="Delete" />
+      <TextField fx:id="tb_cmdsname" layoutX="33.0" layoutY="302.0" prefHeight="25.0" prefWidth="227.0" promptText="Command Name (w/o !)" />
+      <Button fx:id="btn_add_cmds" layoutX="272.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Add" />
+      <Label fx:id="lbl_title_cmds_add" layoutX="103.0" layoutY="279.0" text="Add Command" />
+   </children>
+</AnchorPane>

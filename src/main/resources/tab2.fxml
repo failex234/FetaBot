@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="tab2pane" prefHeight="388.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.failex.fetabot.Controller">
+   <children>
+      <TextArea fx:id="tb_chat" prefHeight="388.0" prefWidth="567.0" />
+   </children>
+</AnchorPane>
